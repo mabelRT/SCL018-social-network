@@ -1,18 +1,15 @@
 //import { logicalExpression } from '@babel/types'; 
-import {login} from './pagesShow/firtpage.js';
 
-import { changeroutes } from './pagesShow/routers.js';
+import {router} from './lib/routers.js';
+router();
 
+window.addEventListener("load", () => {
+    router(window.location.hash);
+});
+window.addEventListener("hashchange", () => {
+    router(window.location.hash);
+});
 
-const init = () => {
-  document.getElementById('root').innerHTML= login()
-  window.addEventListener('haschange', () => {
-  
-    changeroutes(window.location.hash);
-
-  })
-}
-window.addEventListener('load',init)
 
 
 

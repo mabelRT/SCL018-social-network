@@ -1,5 +1,6 @@
 //import{userLogin, loginWhitGoogle} from "../lib/firebase.js";
 export const login = () => {
+    window.location.hash = '/firtpage';
     const loginPage = `
     
     <section class ="containerall">
@@ -19,12 +20,12 @@ export const login = () => {
           <p class="get">¿Olvidaste tu Contraseña?</p>
           <button class="loginbtn"type="button">Iniciar Sesion</button>
          <p class="get">Ingresar con</p>
+         </form>
          <button  class="btngoogle" type="button" title="Ingresar con Google" ><img src="imagenes/icons8-logoo.png"></button>
-         <button class="startbtn" type="button">Registrarse</button>
-       </form>
+       <button class="startbtn" type="button">
+        <a href='#/registerPage'>Registrarse</a></button>
      </main>
    </section>`
 
    return loginPage;
 }
-  

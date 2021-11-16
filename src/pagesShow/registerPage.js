@@ -1,5 +1,7 @@
 export const register = () =>{
-const divRegister = document.createElement("div");
+ window.location.hash = '/registerPage';
+ const divRegister = document.createElement("div");
+
 
 const pageRegister  = `
 
