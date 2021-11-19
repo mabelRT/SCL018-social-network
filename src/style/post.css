@@ -1,0 +1,21 @@
+.header-post{
+    background-color: rgba(250, 104, 78, 0.863);
+    height: 10vh;
+    width:100%; 
+}
+    .container-second{
+    display: flex;  
+    justify-content: space-between;
+    padding: 7px;
+}
+.icodate,
+.iconR,
+.iconsPerson{
+padding-inline-end: 1em;
+}
+    
+.contenedor-perfil2{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
