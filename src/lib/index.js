@@ -6,7 +6,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase
 // import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.2.0/firebase-auth.js";
 import {getAuth,signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult
 } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js';
-//import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.2.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, onSnapshot } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
+import { look } from '../pagesShow/lookPost.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,7 +27,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-//const db = getFirestore(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider(app);
 console.log(app);
 
@@ -112,3 +113,55 @@ getRedirectResult(auth)
     // An error happened.
   });
 };
+
+// Add a new document with a generated id.
+export const recet = async(postData) =>{
+const docRef = await addDoc(collection(db, "posts"), {
+  recetas: postData,
+  
+});
+console.log("Document written with ID: ", docRef.id);
+return docRef;
+};
+/*const prueba =document.getElementById('lookPage');
+export const readData = async() => {
+const querySnapshot = await getDocs(collection(db, "posts"));
+  
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+ const  twopr = `
+  <textarea class="postLook" id="postLook">${doc.data().recetas}</textarea>`
+  // doc.data() is never undefined for query doc snapshots
+  querySnapshot.innerHTML = twopr;
+});
+return querySnapshot;
+};*/
+export const readData = () => {
+  const q = query(collection(db, "posts"));
+  onSnapshot(q, (querySnapshot) => {
+    const postsBox = [];
+    
+    querySnapshot.forEach((doc) => {
+        postsBox.push(doc.data());
+      
+    });
+    look(postsBox)
+    console.log("hola");
+    console.log( "recetas", postsBox.join(", "));
+    return postsBox;
+  });
+
+};
+readData();
+//escuchador
+export const lookout = () =>{
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+       const uid = user.uid;
+     } else  {
+       console.log('no logeado');
+        window.location.hash = '#/firtpage';   
+       }
+  });
+  };
+  

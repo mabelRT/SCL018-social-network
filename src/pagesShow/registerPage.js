@@ -5,7 +5,7 @@ export const register = () =>{
    const divRegister = document.createElement("div");
    divRegister.className = 'div';
   const pageRegister  = `
-
+<img class="containerfondo" src="imagenes/Diseño fondo.png">
 <div class="allcontainer">
 <div class="registerForm">
 <header>

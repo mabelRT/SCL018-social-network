@@ -6,7 +6,7 @@ export const login = () => {
     containerMainScreen.className = 'section';
 
     const loginPage = `
-    
+    <img class="containerfondo" src="imagenes/Diseño fondo.png">
     <section class ="containerall">
     <section class ="usernot">
     <header>
