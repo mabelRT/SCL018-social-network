@@ -12,7 +12,6 @@ export const login = () => {
     <header>
         <img class="containerLogo" src="imagenes/logo4.png">
          <p class="title">Easy &nbsp eggie</p>
-        
      </header>
      <main class= "mainContainer">
        <form class= "formContainer">
