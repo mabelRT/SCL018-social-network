@@ -1,9 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js';
 // import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-analytics.js';
-import {getAuth,signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult,onAuthStateChanged,
+import {
+  getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signOut, signInWithRedirect, getRedirectResult, onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDocs, query, onSnapshot,orderBy,doc, deleteDoc,updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query, onSnapshot, orderBy, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { look } from '../pagesShow/lookPost.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -28,46 +29,47 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider(app);
+export const user = auth.currentUser;
 console.log(app);
 
 // registro de usuario
-export const createU = (email, password) =>{
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-  
-    const user = userCredential.user;
-    console.log("created"); 
-   })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode + errorMessage);
- });
- };
+export const createU = (email, password,nameUser) => {
+  createUserWithEmailAndPassword(auth, email, password,nameUser)
+    .then((userCredential) => {
 
- // registro con google
-export const whithGoogle =()=>{
-signInWithPopup(auth, provider);
-getRedirectResult(auth)
-  .then((result) => {
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    const user = result.user;
+      const user = userCredential.user;
+      console.log("created");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode + errorMessage);
+    });
+};
 
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  });
+// registro con google
+export const whithGoogle = () => {
+  signInWithPopup(auth, provider);
+  getRedirectResult(auth)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+    });
 }
 
 // validar usuario
- export const loginInit = (userEmail,userPassword) =>{
-  signInWithEmailAndPassword(auth, userEmail,userPassword)
+export const loginInit = (userEmail, userPassword) => {
+  signInWithEmailAndPassword(auth, userEmail, userPassword)
     .then((userCredential) => {
       const user = userCredential.user;
       window.location.hash = '#/postPage';
@@ -76,12 +78,12 @@ getRedirectResult(auth)
       const errorCode = error.code;
       const errorMessage = error.message;
       alert('error de datos');
-     window.location.hash = '#/firtpage';
+      window.location.hash = '#/firtpage';
     });
-  }
+}
 
-  // cerrar sesion
- export const logOut = () => {
+// cerrar sesion
+export const logOut = () => {
   signOut(auth).then(() => {
     console.log('cierre de sesión exitoso');
     window.location.hash = '#/firtpage';
@@ -92,63 +94,65 @@ getRedirectResult(auth)
 
 // genera la data
 export const recet = async(postData) =>{
-const docRef = await addDoc(collection(db, "posts"), {
-  recetas: postData,
-  userId:auth.currentUser.uid,
-  date:Date(Date.now()),
-
-});
-console.log("Document written with ID: ", docRef.id);
-return docRef;
-};
-
+  const docRef = await addDoc(collection(db, "posts"), {
+    recetas: postData,
+    name:auth.currentUser.displayName,
+    email:auth.currentUser.email,
+    userId:auth.currentUser.uid,
+    date:Date(Date.now()),
+  
+  });
+  console.log("Document written with ID: ", docRef.id);
+  return docRef;
+  };
+  
 //lee la data
 export const readData = () => {
-  const q = query(collection(db, "posts"),orderBy("date","desc"));
+  const q = query(collection(db, "posts"), orderBy("date", "desc"));
   onSnapshot(q, (querySnapshot) => {
-   const postsBox = [];
+    const postsBox = [];
     querySnapshot.forEach((doc) => {
       const task = {};
-      task.id=doc.id;
-      task.data=doc.data();
-    postsBox.push({task});
+      task.id = doc.id;
+      task.data = doc.data();
+      postsBox.push({ task });
     });
     look(postsBox);
-    console.log( "recetas", postsBox.join(", "));
+    console.log("recetas", postsBox.join(", "));
     return postsBox;
   });
-  };
+};
 readData();
 
 //observador
-export const lookout = () =>{
+export const lookout = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-       const uid = user.uid;
-       window.location.hash = '#/postPage';
-       console.log('auth: sign in')
-     } else  {
-      if(!window.location.hash.includes('registerPage')){
+      const uid = user.uid;
+      window.location.hash = '#/postPage';
+      console.log(uid)
+      console.log('auth: sign in')
+    } else {
+      if (!window.location.hash.includes('registerPage')) {
         window.location.hash = '#/firtpage'
       }
-        console.log('auth: sign out'); 
-       }
+      console.log('auth: sign out');
+    }
   });
-  };
+};
 
-  // borrar post
-  export const deletePost = async (id) =>{
-  await deleteDoc(doc(db,"posts",id));
+// borrar post
+export const deletePost = async (id) => {
+  await deleteDoc(doc(db, "posts", id));
   console.log(id);
 };
 
 // editar post
-export const editPost = async (id,postData) =>{
-const postEdit = doc(db, "posts",id);
-await updateDoc(postEdit, {
+export const editPost = async (id, postData) => {
+  const postEdit = doc(db, "posts", id);
+  await updateDoc(postEdit, {
+    recetas: postData,
 
-  recetas: postData,
-  date:Date(Date.now()),
-});
+
+  });
 }
-  

@@ -1,11 +1,12 @@
-import{whithGoogle,loginInit} from "../lib/index.js";
+import { whithGoogle, loginInit } from "../lib/index.js";
+
 
 export const login = () => {
-    window.location.hash = '/firtpage';
-    const containerMainScreen = document.createElement('div');
-    containerMainScreen.className = 'section';
+  window.location.hash = '/firtpage';
+  const containerMainScreen = document.createElement('div');
+  containerMainScreen.className = 'section';
 
-    const loginPage = `
+  const loginPage = `
     <img class="containerfondo" src="imagenes/Diseño fondo.png">
     <section class ="containerall">
     <section class ="usernot">
@@ -29,17 +30,18 @@ export const login = () => {
      </main>
      </div>
    </section>`
-   containerMainScreen.innerHTML = loginPage
-   containerMainScreen.querySelector('#googlebtn').addEventListener('click', () => {
+  containerMainScreen.innerHTML = loginPage
+
+  containerMainScreen.querySelector('#googlebtn').addEventListener('click', () => {
     whithGoogle();
-    window.location.hash ='#/postPage';
+    window.location.hash = '#/postPage';
   });
   containerMainScreen.querySelector('.loginbtn').addEventListener('click', () => {
-  const userEmail = document.querySelector('.inputone').value;
-  const userPassword = document.querySelector('.inputtwo').value;
-  loginInit(userEmail,userPassword);
+    const userEmail = document.querySelector('.inputone').value;
+    const userPassword = document.querySelector('.inputtwo').value;
+    loginInit(userEmail, userPassword);
   });
-   return containerMainScreen;
+  return containerMainScreen;
 }
- 
- 
+
+
