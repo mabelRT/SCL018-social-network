@@ -5,7 +5,7 @@ export const register = () => {
   const divRegister = document.createElement("div");
   divRegister.className = 'div';
   const pageRegister = `
-<img class="containerfondo" src="imagenes/Diseño fondo.png">
+<img class="containerfondo" src="imagenes/fondoimagen1.jpeg">
 <div class="allcontainer">
 <div class="registerForm">
 <header>
@@ -23,9 +23,11 @@ export const register = () => {
      <br>
      <button type="submit" id="btnRegister" class="botonregister">Crear Cuenta</button>
    <p> Al registrarte, aceptas nuestras condiciones de uso y politicas de privacidad</p>
-   <p> ¿Ya tienes cuenta?<a class ="link" href="#/firtpage">Inicia sesión</a></p>
+   <p> ¿Ya tienes cuenta?<a class ="linkRegister" href="#/firtpage">Inicia sesión</a></p>
 </form>
 </div> `
+
+
 
 
   divRegister.innerHTML = pageRegister;

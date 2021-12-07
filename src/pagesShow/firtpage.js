@@ -7,7 +7,7 @@ export const login = () => {
   containerMainScreen.className = 'section';
 
   const loginPage = `
-    <img class="containerfondo" src="imagenes/Diseño fondo.png">
+    <img class="containerfondo" src="imagenes/fondoimagen1.jpeg">
     <section class ="containerall">
     <section class ="usernot">
     <header>
@@ -16,13 +16,14 @@ export const login = () => {
      </header>
      <main class= "mainContainer">
        <form class= "formContainer">
-         <img class="imgclass"src="imagenes/icons8-email2.png">
-         <input class ="inputone" id="correoElectronico" type="text" placeholder="Correo Electronico">
-         <img class="imgclasstwo"src="imagenes/icons8-cand.png">
+       <a span class="icon icon-mail2">
+          <input class ="inputone" id="correoElectronico" type="text" placeholder="Correo Electronico">
+       </a>
+       <a span class="icon icon-lock">
          <input class ="inputtwo" id="contrasena" type="password" placeholder="Contraseña">
-          <p class="get">¿Olvidaste tu Contraseña?</p>
+       </a>
           <button class="loginbtn"type="button">Iniciar Sesion</button>
-         </form>
+        </form>
          <p class="get">Ingresar con</p>
          <button  class="btngoogle" id ="googlebtn" type="button" title="Ingresar con Google" ><img src="imagenes/icons8-logoo.png"></button>
        <button class="startbtn" type="button">

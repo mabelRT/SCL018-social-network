@@ -1,7 +1,7 @@
 import {login} from '../pagesShow/firtpage.js';
 import {register} from '../pagesShow/registerPage.js';
 import { post } from "../pagesShow/postPage.js";
-//import { look } from "../pagesShow/lookPost.js";
+import { look } from "../pagesShow/lookPost.js";
 //import { menuProfile} from "../pagesShow/profile.js";
 
 //import { onAuth } from "../lib/index.js"

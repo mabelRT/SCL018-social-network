@@ -2,9 +2,23 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js';
 // import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-analytics.js';
 import {
-  getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signOut, signInWithRedirect, getRedirectResult, onAuthStateChanged,
+  updateProfile,
+  getAuth,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signOut,
+  signInWithRedirect,
+  getRedirectResult,
+  onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDocs, query, onSnapshot, orderBy, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDoc,
+  query, onSnapshot, orderBy, doc, deleteDoc, updateDoc, arrayRemove, arrayUnion } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { look } from '../pagesShow/lookPost.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -39,10 +53,16 @@ export const createU = (email, password,nameUser) => {
 
       const user = userCredential.user;
       console.log("created");
+      updateProfile(auth.currentUser,{
+        displayName: nameUser,
+     
+      })
+
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      alert("correo y contraseña invalido")
       console.log(errorCode + errorMessage);
     });
 };
@@ -55,7 +75,7 @@ export const whithGoogle = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-
+    alert("Ustedes se registro a Eassy Veggie");
     }).catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -77,7 +97,7 @@ export const loginInit = (userEmail, userPassword) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert('error de datos');
+      alert('ingrese email y correo valido');
       window.location.hash = '#/firtpage';
     });
 }
@@ -85,20 +105,24 @@ export const loginInit = (userEmail, userPassword) => {
 // cerrar sesion
 export const logOut = () => {
   signOut(auth).then(() => {
-    console.log('cierre de sesión exitoso');
+    alert("Usted esta cerrando sesion");
     window.location.hash = '#/firtpage';
   }).catch((error) => {
-    console.log(error);
+    console.log(error,"aqui esta");
   });
 };
 
 // genera la data
-export const recet = async(postData) =>{
+export const recet = async(numberData,ingredients, postData) =>{
   const docRef = await addDoc(collection(db, "posts"), {
+    nombreRecetas: numberData,
+    ingredientes: ingredients,
     recetas: postData,
     name:auth.currentUser.displayName,
     email:auth.currentUser.email,
     userId:auth.currentUser.uid,
+    like: [],
+    numberLike: 0,
     date:Date(Date.now()),
   
   });
@@ -116,13 +140,14 @@ export const readData = () => {
       task.id = doc.id;
       task.data = doc.data();
       postsBox.push({ task });
+
     });
     look(postsBox);
     console.log("recetas", postsBox.join(", "));
     return postsBox;
   });
 };
-readData();
+
 
 //observador
 export const lookout = () => {
@@ -148,11 +173,32 @@ export const deletePost = async (id) => {
 };
 
 // editar post
-export const editPost = async (id, postData) => {
+export const editPost = async (id,numberData, ingredients, postData) => {
   const postEdit = doc(db, "posts", id);
   await updateDoc(postEdit, {
+    nombreRecetas: numberData,
+    ingredientes: ingredients,
     recetas: postData,
-
-
   });
 }
+
+//dar like a las publicacion 
+export const likepost = async (id, userId) => {
+  const postRef = doc(db, "posts", id);
+  const docLike = await getDoc(postRef);
+  const dataLike = docLike.data();
+  console.log(dataLike)
+  const likesCount = dataLike.numberLike;
+
+  if ((dataLike.like).includes(userId)) {
+    await updateDoc(postRef, {
+      like: arrayRemove(userId),
+      numberLike: likesCount - 1,
+    });
+  } else {
+    await updateDoc(postRef, {
+      like: arrayUnion(userId),
+      numberLike: likesCount + 1,
+    });
+  }
+};
