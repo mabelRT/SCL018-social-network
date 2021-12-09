@@ -125,3 +125,18 @@ p{
         margin:0;
     }
     }
+    @media screen and (max-width: 1280px){ /*tamaño pantalla*/
+
+        .allcontainer{
+          
+            height: 83%;
+            width: 28%;
+           
+        }
+   .registers {
+    
+    width: 60%;
+    font-size: 9px;
+   
+}
+    }

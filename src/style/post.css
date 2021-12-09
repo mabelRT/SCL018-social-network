@@ -1,12 +1,6 @@
-/*.section-post{
- background-image: url("https://i.pinimg.com/564x/33/4f/44/334f4447defff599ecccbdc638beacef.jpg"),
-                   url("https://i.pinimg.com/564x/33/4f/44/334f4447defff599ecccbdc638beacef.jpg");
-
-                   background-repeat: round;
-                   background-size: 759px auto;
-                   background-attachment: fixed;
-}*/
-
+.section-post {
+    background-color: white;
+}
 figure{
     margin: 0;   
 }
@@ -36,14 +30,14 @@ figure{
     bottom: 5rem;
  }   
 .logo-name{
-  font-size:35px;
+  font-size:2em;
 } 
 .contenedor-perfil2{
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  left: 420px;
+  left: 30%;
  
 }
 #post, #postt, #posttt{
@@ -94,7 +88,7 @@ textarea{
 
 .buttonsContent{
     position:relative;
-    left:435px;
+    left:70%;
 }
 .watchPost{
     display: flex;
@@ -109,21 +103,21 @@ textarea{
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 150px 150px 150px;
-     height: 430px;
-     width: 300px;
+     height:60vh;
+     width: 20vw;
      align-items: center;
      justify-content: center;
      background-image: url("https://i.pinimg.com/564x/33/4f/44/334f4447defff599ecccbdc638beacef.jpg");
      background-position: center center;
      position: fixed;
-     margin-left:50px;
-     bottom: 50px;
+     margin-left:3em;
+     bottom: 8%;
      border-radius: 20px;
 }
 
 .iconshome a{
     font-family:'vibur',cursive,arial;
-    font-size: 30px;
+    font-size: 2em;
 }
  
 .contentBox{
@@ -136,7 +130,8 @@ textarea{
     position: relative;
     border-radius: 7px;
     font-size: 15px;
-    left: 270px;
+    margin-top:1%;
+    left: 42%;
     background:linear-gradient(90deg, yellow, orange 35%, #ed116b);
     color: white;
 }
@@ -155,7 +150,7 @@ textarea{
 .userpost{
     width:40px;
     position:relative;
-    top:11px;
+    top:0.7em;
   }
   .btn-like, .icon-pencil, .icon-bin{
     cursor: pointer;
@@ -175,7 +170,7 @@ textarea{
   .icon-pencil, .icon-bin{
     font-size:18px;
     position:relative;
-    top:15px;
+    top:45%;
 
   }
 
@@ -197,31 +192,27 @@ textarea{
     flex-direction: column;
     background-color: #fcd391;
     position:relative;
-    bottom:85px;
-    margin-right:50px;
+    bottom:5em;
+    margin-right:3%;
     border-radius: 20px;
-    width: 300px;
+    width: 20vw;
 }
 .linkId{
     position:absolute;
-    left:22px;
+    left:7%;
   }
 
 .link a img{
-    margin: 40px;
-    margin-top:20px;
-    width: 180px;
+    margin: 14%;
+    margin-top:1%;
+    width: 12vw;
 }
 .titleLink{
-    font-size: 30px;
+    font-size: 2em;
     font-family: vibur;
 }
 
-
-
-
-
-@media screen and (max-width: 620px){
+@media screen and (max-width: 620px){ /*responsive celu*/
    
     
     .header-image{
@@ -342,3 +333,45 @@ textarea{
     }
 
 }
+@media screen and (max-width: 1280px){ /*tamaño pantalla*/
+    .contenedor-perfil2{
+        left: 28%;
+       
+      }
+      #postLook{
+          resize:none; 
+       
+       }
+     .buttonsContent{
+         left:65%;
+      }
+     
+      .iconshome{
+    grid-template-rows: 145px 145px 145px;
+    height:72vh;
+    bottom:0;
+    top:31%;
+  }
+      #post, #postt, #posttt{
+      width: 35rem;
+}
+     #postt{
+      
+      border-top-left-radius: 15px 15px;
+      border-top-right-radius: 15px 15px;
+     }
+     #post{
+      border-bottom-left-radius: 13px 13px;
+      border-bottom-right-radius: 13px 13px;
+     }
+      
+    .icon-pencil, .icon-bin{
+    font-size:18px;
+    position:relative;
+    top:45%;
+      
+        }
+      
+ 
+  }
+  

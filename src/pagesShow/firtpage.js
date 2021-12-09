@@ -29,8 +29,11 @@ export const login = () => {
        <button class="startbtn" type="button">
         <a href='#/registerPage'>Registrarse</a></button>
      </main>
-     </div>
-   </section>`
+     </div> 
+   </section>
+    <footer>
+      <p> @2021 Easy Veggie. Creado por Mabel Rengifo y Alejandra Maureira.</p>
+    </footer> `
   containerMainScreen.innerHTML = loginPage
 
   containerMainScreen.querySelector('#googlebtn').addEventListener('click', () => {

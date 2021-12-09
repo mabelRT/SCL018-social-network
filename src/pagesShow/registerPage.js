@@ -27,9 +27,6 @@ export const register = () => {
 </form>
 </div> `
 
-
-
-
   divRegister.innerHTML = pageRegister;
 
   divRegister.querySelector('#btnRegister').addEventListener('click', () => {

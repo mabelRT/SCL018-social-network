@@ -64,7 +64,7 @@ export const post = () => {
 
   containerPostScreen.innerHTML = pagePost
 
- 
+
   //publicar 
   containerPostScreen.querySelector('#publicar').addEventListener('click', () => {
     const numberData = document.querySelector('#postt').value;
@@ -75,13 +75,13 @@ export const post = () => {
     document.querySelector('#postt').value = "";
     document.querySelector('#posttt').value = "";
   });
- //cerrar seccion
- containerPostScreen.querySelector('.returnBtn').addEventListener('click', () => {
-  logOut();
+  //cerrar seccion
+  containerPostScreen.querySelector('.returnBtn').addEventListener('click', () => {
+    logOut();
 
 
-});
-readData();
+  });
+  readData();
   return containerPostScreen;
 }
 
