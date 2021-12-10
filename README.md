@@ -52,7 +52,7 @@ HU3: Como persona que esta pensando optar por una alimentación vegetariana, me 
 
 
  ## Enlace página🚀
-
+https://easy-veggie-scl018.web.app
 
  ## 🛠️ Creado por:
 
