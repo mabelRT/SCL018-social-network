@@ -1,0 +1,176 @@
+.containerfondo{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+.containerall{
+  
+    display: flex;
+    background-color:rgb(182, 235, 168,0.5); 
+    padding: 2%;
+    flex-direction: column;
+    align-items: center;
+    border-radius:4%;
+    height: 80%;
+    width: 30%;
+    position: absolute;
+    left: 1%;
+    top:6%;
+}
+.containerLogo{
+    width: 10%;
+    position: absolute;
+    left: 45.5%;
+    top: 9%;
+}
+.title{
+    font-size: 26px;
+    font-family:'vibur',cursive,arial;
+    font-weight: bold;
+}
+
+
+.mainContainer{
+    
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10%;
+    background-color:rgb(255, 255, 255,0.6);
+    padding: 50px;
+    border-radius: 4%; 
+    position: relative;
+    align-content: center;
+    width: 20vw;
+}
+
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+} 
+.formContainer a{
+   font-size: 25px;
+} 
+   
+::placeholder{
+    margin-bottom: 10%;
+    text-align:center ;
+}
+.get{
+    display: flex;
+    font-size: 90%;
+    justify-content:center ;
+    align-content: center;  
+}
+
+.inputone, .inputtwo{
+    
+    border:none;
+    background:none;
+    border-bottom: 1.3px solid #000000;
+    margin-bottom: 10%;
+    width: 220px;
+    
+}
+
+.imgclass{
+    position:absolute;
+    min-width: 8%;
+    height: auto;
+    top: 13%;
+    left: 4.5%;
+    
+    
+}   
+.imgclasstwo{
+    position:absolute;
+    min-width: 8%;
+    height: auto;
+    top: 23%;
+    left: 4.5%;
+
+}
+.loginbtn,
+.startbtn{
+    border-radius: 8px;
+    background: #63DB68;
+    padding: 5px;
+    width: 80%;
+    margin-left:10%;
+    margin-right: 10%;
+    cursor: pointer;
+    
+}
+
+.btngoogle{
+    background: none;
+    border:none;
+    margin-bottom: 10%;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color:black;
+}
+footer{
+    
+    width: 300%;
+    position: relative;
+    left:460px;
+    
+
+}
+@media screen and (min-width: 320px)and (max-width:667px){ /*tamaño pantalla*/
+   
+    .containerall{
+        background-color:rgb(182, 235, 168); 
+        padding: 36%;
+        border-radius:0;
+     
+        
+        left: 0;
+        top:0;     
+    }
+    .containerLogo{
+        top: 19%;         
+     }
+    .title{
+         margin:0;   
+    }
+    .mainContainer{
+      
+        width: 40vw;
+    }
+    .formContainer a{
+        font-size: 15px;
+        position:relative;
+        right:30px;
+     } 
+        
+     .inputone, .inputtwo{ 
+         width: 200px; 
+     }
+     
+    }
+    
+
+    @media screen and (min-width: 800px)and (max-width:1280px){ /*tamaño pantalla*/
+
+.containerall{
+  height: 80%;
+  width: 28%;
+}
+.mainContainer{
+  padding: 25px;
+  width: 22vw;
+  margin-left:16px;
+}
+        
+    }
