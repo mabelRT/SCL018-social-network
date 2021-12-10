@@ -212,7 +212,7 @@ textarea{
     font-family: vibur;
 }
 
-@media screen and (max-width: 620px){ /*responsive celu*/
+@media screen and (min-width: 320px) and (max-width:667px){ /*tamaño pantalla*/
    
     
     .header-image{
@@ -333,7 +333,8 @@ textarea{
     }
 
 }
-@media screen and (max-width: 1280px){ /*tamaño pantalla*/
+@media screen and (min-width: 800px)and (max-width:1280px){ /*tamaño pantalla*/
+    
     .contenedor-perfil2{
         left: 28%;
        
@@ -374,4 +375,5 @@ textarea{
       
  
   }
+
   

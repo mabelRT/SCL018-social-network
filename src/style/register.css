@@ -1,4 +1,3 @@
-
 .allcontainer{
     display: flex;
     background-color:rgb(182, 235, 168,0.5); ;
@@ -86,7 +85,7 @@ p{
     right:  35%;
     top: 2.1em;
 }
-@media screen and (max-width: 620px){
+@media screen and (min-width: 320px) and (max-width:667px){ /*tamaño pantalla*/
  
     .allcontainer{
         display: flex;
@@ -125,7 +124,7 @@ p{
         margin:0;
     }
     }
-    @media screen and (max-width: 1280px){ /*tamaño pantalla*/
+    @media screen and (min-width: 800px)and (max-width:1280px){ /*tamaño pantalla*/
 
         .allcontainer{
           
