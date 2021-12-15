@@ -5,7 +5,7 @@ import {lookout} from './lib/index.js';
 
 window.addEventListener("load", () => {
  router(window.location.hash);
- lookout();
+ lookout();//observador
   
 });
 window.addEventListener("hashchange", () => {
